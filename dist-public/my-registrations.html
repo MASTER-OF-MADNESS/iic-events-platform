@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View all your IIC event registrations, attendance, and certificates." />
+  <title>My Registrations — IIC Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/myRegistrations-D4ySAqVA.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/supabase-client-Ba9QOxWH.js">
+  <link rel="modulepreload" crossorigin href="/assets/auth-Dh8knowi.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-0wub1irN.css">
+  <link rel="stylesheet" crossorigin href="/assets/base-DdfbKP-A.css">
+  <link rel="stylesheet" crossorigin href="/assets/layout-C7IwP640.css">
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
+  <div class="navbar__inner iic-navbar">
+        <div class="iic-navbar__brand" style="gap: 16px; align-items: center;">
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <img src="images/vit-logo-new.png" alt="VIT Logo" style="height: 38px; object-fit: contain;" />
+        <img src="images/iic-logo-new.png" alt="IIC Logo" style="height: 40px; object-fit: contain;" />
+        <img src="images/edc-logo.png" alt="EDC Logo" style="height: 40px; object-fit: contain;" />
+        <img src="images/ipr-logo.jpg" alt="IPR Logo" style="height: 52px; object-fit: contain;" />
+      </div>
+      <div style="font-family: 'Bebas Neue', sans-serif !important; font-size: 22px; letter-spacing: 0.5px; color: var(--text-heading, #1e293b); border-left: 2px solid #e2e8f0; padding-left: 16px; margin-left: 4px; white-space: nowrap; margin-bottom: -4px;">
+        The Office of Innovation, Startup and Technology Transfer
+      </div>
+    </div>
+    
+    <div class="navbar__nav iic-navbar__nav" role="menubar" style="display: none;">
+    </div>
+    
+    <div class="iic-navbar__right">
+      <button class="navbar__search-btn" id="openSearchBtn" aria-label="Search" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; width: 34px; height: 34px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="login.html" class="btn btn-primary btn-sm" id="navLoginBtn">Login</a>
+      <div class="dropdown hidden" id="navUserMenu">
+        <button class="btn btn-sm iic-navbar__user-btn" id="navUserBtn" style="padding: 6px;">
+          <span class="iic-navbar__avatar" id="navUserAvatar">U</span>
+        </button>
+        <div class="dropdown__menu dropdown__menu--profile">
+          <div class="dropdown__header">
+            <div class="dropdown__name" id="navUserName">Name</div>
+            <div class="dropdown__email" id="navUserEmail">Email</div>
+          </div>
+          <div class="dropdown__divider"></div>
+          <a href="index.html" class="dropdown__item">Home</a>
+          <a href="my-registrations.html" class="dropdown__item">My Registrations</a>
+          <div class="dropdown__divider"></div>
+          <div class="dropdown__item danger" id="navLogoutBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            Logout
+          </div>
+        </div>
+      </div>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="index.html#allEventsSection">Events</a>
+  <a href="my-registrations.html" class="active">My Registrations</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="events-header">
+  <div class="events-header__inner">
+    <h1 class="events-header__title">My Registrations</h1>
+    <p class="events-header__sub">Track your event registrations, attendance, and certificates</p>
+  </div>
+</div>
+
+<main class="section">
+  <div class="container">
+    <!-- Filter Pills -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:var(--space-lg);">
+      <div class="filter-pills" id="regFilterPills">
+        <button class="pill active" data-filter="all">All</button>
+        <button class="pill" data-filter="upcoming">Upcoming</button>
+        <button class="pill" data-filter="today">Today</button>
+        <button class="pill" data-filter="completed">Completed</button>
+      </div>
+      <div id="regCount" style="font-size:var(--text-sm);color:var(--text-muted);"></div>
+    </div>
+
+    <!-- Registration Cards -->
+    <div id="regList" style="display:flex;flex-direction:column;gap:var(--space-md);"></div>
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="iic-footer" role="contentinfo">
+  <div class="iic-footer__inner">
+    <div class="iic-footer__brand">
+      <img src="images/vit-seal.png" alt="VIT Logo" class="iic-footer__logo" />
+      <div class="iic-footer__brand-text">
+        <div class="iic-footer__brand-name">VIT INNOVATIONS</div>
+        <div class="iic-footer__copyright">Copyright @ VIT | Privacy Policy</div>
+      </div>
+    </div>
+    <div class="iic-footer__col">
+      <div class="iic-footer__col-title">Policies:</div>
+      <a href="https://innovations.vit.ac.in/static/docs/VIT-Innovation-Startup-and-Incubation-Policy-2022.pdf" target="_blank" rel="noopener noreferrer">Innovation, Startup and Incubation Policy</a>
+      <a href="https://innovations.vit.ac.in/static/docs/National-Innovation-Startup-Policy-NISP-2019.pdf" target="_blank" rel="noopener noreferrer">National Innovation and Startup Policy</a>
+      <div class="iic-footer__text-item">Faculty Startup Venture Policy</div>
+      <div class="iic-footer__text-item">Student Startup Venture Policy</div>
+    </div>
+    <div class="iic-footer__col">
+      <div class="iic-footer__col-title">Contact:</div>
+      <a href="mailto:director.innovation@vit.ac.in">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        director.innovation@vit.ac.in
+      </a>
+      <a href="mailto:iic@vit.ac.in">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        iic@vit.ac.in
+      </a>
+    </div>
+  </div>
+  <div class="iic-footer__bottom">
+    Site Developed by Innovations Dept, IIC, VIT Vellore
+  </div>
+</footer>
+
+</body>
+</html>

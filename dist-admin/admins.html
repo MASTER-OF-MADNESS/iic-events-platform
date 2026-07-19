@@ -8,7 +8,7 @@
       try { user = JSON.parse(sessionStorage.getItem('iic_user')); } catch(e) {}
       const isAdmin = user && (user.role === 'admin' || user.role === 'ADMIN' || user.role === 'SUPER_ADMIN');
       if (!token || !isAdmin) {
-        window.location.href = '/admin/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
       }
     })();
   </script>
@@ -20,9 +20,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="/assets/admins-RjlDPRDM.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/api-BDslKlxA.js">
-  <link rel="modulepreload" crossorigin href="/assets/admin-auth-CeQV01eD.js">
+  <script type="module" crossorigin src="/assets/admins-CPLeqWck.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/api-CI8KUEms.js">
+  <link rel="modulepreload" crossorigin href="/assets/admin-auth-D3N5txHR.js">
   <link rel="stylesheet" crossorigin href="/assets/api-DdfbKP-A.css">
   <link rel="stylesheet" crossorigin href="/assets/admin-auth-oj7Z0JZu.css">
 </head>

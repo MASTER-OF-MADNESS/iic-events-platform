@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate Verification — IIC Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: #F8FAFC;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    .verify-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: 500px;
+      /* VERIFY-001: Fluid padding */
+      padding: clamp(24px, 5vw, 40px);
+      text-align: center;
+      /* Ensure it doesn't touch screen edges */
+      margin: 0 16px;
+    }
+    .verify-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+    .verify-logo img {
+      max-width: 18%;
+      max-height: 47px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+    .verify-logo img.vit-logo-large {
+      max-width: 35%;
+      max-height: 55px;
+    }
+    .status-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .status-icon.loading {
+      background: #E2E8F0;
+      color: #64748B;
+      animation: pulse 1.5s infinite;
+    }
+    .status-icon.verified {
+      background: #DCFCE7;
+      color: #22C55E;
+    }
+    .status-icon.invalid {
+      background: #FEE2E2;
+      color: #EF4444;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+    .verify-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1E293B;
+      margin-bottom: 8px;
+    }
+    .verify-desc {
+      color: #64748B;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+    .details-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      display: none;
+    }
+    .detail-row {
+      margin-bottom: 12px;
+    }
+    .detail-row:last-child {
+      margin-bottom: 0;
+    }
+    .detail-label {
+      font-size: 12px;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+    .detail-value {
+      font-size: 15px;
+      color: #0F172A;
+      font-weight: 500;
+    }
+    .cert-id-tag {
+      display: inline-block;
+      background: #E0E7FF;
+      color: #4F46E5;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    #errorMsg {
+      color: #EF4444;
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* VERIFY-001: Responsive improvements */
+    @media (max-width: 480px) {
+      body {
+        align-items: flex-start;
+        padding: 24px 0;
+      }
+
+      .verify-container {
+        padding: 24px 16px;
+        border-radius: 12px;
+        margin: 0 12px;
+      }
+
+      .verify-logo {
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .verify-logo img {
+        height: 36px;
+      }
+
+      .verify-title {
+        font-size: 20px;
+      }
+
+      .status-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 16px;
+      }
+
+      .details-card {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .verify-logo img {
+        height: 28px;
+      }
+
+      .verify-container {
+        padding: 20px 12px;
+        margin: 0 8px;
+      }
+
+      .verify-title {
+        font-size: 18px;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/verify-BpTY91l0.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/supabase-client-Ba9QOxWH.js">
+  <link rel="stylesheet" crossorigin href="/assets/base-DdfbKP-A.css">
+</head>
+<body>
+  <div class="verify-container">
+    <div class="verify-logo">
+      <img src="images/vit-logo-new.png" alt="VIT Logo" class="vit-logo-large" />
+      <img src="images/iic-logo-new.png" alt="IIC Logo" />
+      <img src="images/edc-logo.png" alt="EDC Logo" />
+      <img src="images/ipr-logo.jpg" alt="IPR Logo" />
+    </div>
+
+    <div class="status-icon loading" id="statusIcon">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+
+    <h1 class="verify-title" id="statusTitle">Verifying Certificate...</h1>
+    <p class="verify-desc" id="statusDesc">Please wait while we check our records.</p>
+
+    <div id="errorMsg"></div>
+
+    <div class="details-card" id="detailsCard">
+      <div class="detail-row">
+        <div class="detail-label">Student Name</div>
+        <div class="detail-value" id="valName">...</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Registration Number</div>
+        <div class="detail-value" id="valRegNo">...</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Event</div>
+        <div class="detail-value" id="valEvent">...</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Date of Issue</div>
+        <div class="detail-value" id="valDate">...</div>
+      </div>
+      <div class="detail-row" style="margin-top: 20px;">
+        <div class="detail-label">Certificate ID</div>
+        <div class="cert-id-tag" id="valCertId">...</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

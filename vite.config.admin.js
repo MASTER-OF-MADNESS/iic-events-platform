@@ -11,7 +11,7 @@ import { fileURLToPath, URL } from 'url';
 
 export default defineConfig({
   root: 'admin',
-  publicDir: false,
+  publicDir: '../static',
 
   resolve: {
     alias: {

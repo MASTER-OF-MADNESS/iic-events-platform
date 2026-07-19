@@ -8,7 +8,7 @@
       try { user = JSON.parse(sessionStorage.getItem('iic_user')); } catch(e) {}
       const isAdmin = user && (user.role === 'admin' || user.role === 'ADMIN' || user.role === 'SUPER_ADMIN');
       if (!token || !isAdmin) {
-        window.location.href = '/admin/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
       }
     })();
   </script>
@@ -181,9 +181,9 @@
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="/assets/certificates-CLf9NKEY.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/api-BDslKlxA.js">
-  <link rel="modulepreload" crossorigin href="/assets/admin-auth-CeQV01eD.js">
+  <script type="module" crossorigin src="/assets/certificates-PXeG1ND_.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/api-CI8KUEms.js">
+  <link rel="modulepreload" crossorigin href="/assets/admin-auth-D3N5txHR.js">
   <link rel="stylesheet" crossorigin href="/assets/api-DdfbKP-A.css">
   <link rel="stylesheet" crossorigin href="/assets/admin-auth-oj7Z0JZu.css">
 </head>
