@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Event details — register and explore this event." />
+  <title>Event Details — IIC Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
+  <div class="navbar__inner iic-navbar">
+        <div class="iic-navbar__brand" style="gap: 16px; align-items: center;">
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <img src="images/vit-logo-new.png" alt="VIT Logo" style="height: 38px; object-fit: contain;" />
+        <img src="images/iic-logo-new.png" alt="IIC Logo" style="height: 40px; object-fit: contain;" />
+        <img src="images/edc-logo.png" alt="EDC Logo" style="height: 40px; object-fit: contain;" />
+        <img src="images/ipr-logo.jpg" alt="IPR Logo" style="height: 52px; object-fit: contain;" />
+      </div>
+      <div style="font-family: 'Bebas Neue', sans-serif !important; font-size: 22px; letter-spacing: 0.5px; color: var(--text-heading, #1e293b); border-left: 2px solid #e2e8f0; padding-left: 16px; margin-left: 4px; white-space: nowrap; margin-bottom: -4px;">
+        The Office of Innovation, Startup and Technology Transfer
+      </div>
+    </div>
+    
+    <div class="navbar__nav iic-navbar__nav" role="menubar" style="display: none;">
+    </div>
+    
+    <div class="iic-navbar__right">
+      <a href="login.html" class="btn btn-primary btn-sm" id="navLoginBtn">Login</a>
+      <div class="dropdown hidden" id="navUserMenu">
+        <button class="btn btn-sm iic-navbar__user-btn" id="navUserBtn" style="padding: 6px;">
+          <span class="iic-navbar__avatar" id="navUserAvatar">U</span>
+        </button>
+        <div class="dropdown__menu dropdown__menu--profile">
+          <div class="dropdown__header">
+            <div class="dropdown__name" id="navUserName">Name</div>
+            <div class="dropdown__email" id="navUserEmail">Email</div>
+          </div>
+          <div class="dropdown__divider"></div>
+          <a href="index.html" class="dropdown__item">Home</a>
+          <a href="my-registrations.html" class="dropdown__item">My Registrations</a>
+          <div class="dropdown__divider"></div>
+          <div class="dropdown__item danger" id="navLogoutBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            Logout
+          </div>
+        </div>
+      </div>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="index.html#allEventsSection">Events</a>
+  <a href="my-registrations.html">My Registrations</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     EVENT DETAIL — ZOMATO DISTRICT STYLE
+     ═══════════════════════════════════════════════════════════ -->
+
+<!-- EVENT TITLE + DATE/TIME (above poster, like District) -->
+<div class="ed-header" data-reveal>
+  <a href="index.html" class="ed-back-btn" aria-label="Back to Home">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    Back
+  </a>
+  <h1 class="ed-header__title" id="heroTitle">Loading event…</h1>
+  <div class="ed-header__subtitle" id="heroSubtitle">Loading date & venue…</div>
+</div>
+
+<!-- POSTER HERO — Blurred-edge side bleed (District style) -->
+<div class="ed-poster-container" data-reveal>
+  <div class="ed-poster">
+    <div class="ed-poster__left">
+      <img src="" alt="" class="ed-poster__bg-img" id="heroImgLeft">
+      <div class="ed-poster__overlay"></div>
+    </div>
+    <div class="ed-poster__center">
+      <img src="" alt="Event Poster" class="ed-poster__center-img" id="heroImgCenter">
+    </div>
+    <div class="ed-poster__right">
+      <img src="" alt="" class="ed-poster__bg-img" id="heroImgRight">
+      <div class="ed-poster__overlay"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TWO-COLUMN LAYOUT: Content + Sticky Sidebar -->
+<div class="ed-layout">
+
+  <!-- ──── LEFT: Main Content ──── -->
+  <main class="ed-main">
+
+    <!-- About Section -->
+    <section class="ed-section" data-reveal>
+      <h2 class="ed-section__heading">About</h2>
+      <div class="ed-description" id="eventDescription">Loading…</div>
+    </section>
+
+    <!-- Thin divider -->
+    <hr class="ed-divider" />
+
+    <!-- Event Details Section -->
+    <section class="ed-section" data-reveal>
+      <h2 class="ed-section__heading">Event Details</h2>
+      <div class="ed-details-grid" style="margin-bottom: var(--space-xl);">
+        <div class="ed-detail-item">
+          <span class="ed-detail-item__label">Category</span>
+          <span class="ed-detail-item__value" id="infoCategory">—</span>
+        </div>
+        <div class="ed-detail-item">
+          <span class="ed-detail-item__label">Fee</span>
+          <span class="ed-detail-item__value" id="infoFee">—</span>
+        </div>
+      </div>
+
+      <div class="ed-coordinators">
+        <div class="ed-coordinator-group">
+          <h3 class="ed-coordinator-group__title">Teacher Coordinators</h3>
+          <ol class="ed-coordinator-list" id="teacherCoordinatorsList">
+            <li class="ed-coordinator-list__empty">None assigned</li>
+          </ol>
+        </div>
+        <div class="ed-coordinator-group">
+          <h3 class="ed-coordinator-group__title">Student Coordinators</h3>
+          <ol class="ed-coordinator-list" id="studentCoordinatorsList">
+            <li class="ed-coordinator-list__empty">None assigned</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thin divider -->
+    <hr class="ed-divider" />
+
+    <!-- Speaker Section -->
+    <section class="ed-section" id="speakerSection" data-reveal>
+      <h2 class="ed-section__heading">Speaker</h2>
+      <div class="ed-description" id="eventSpeaker">
+        <p style="color:var(--text-muted);">Speaker details will be updated soon.</p>
+      </div>
+    </section>
+
+    <!-- Thin divider -->
+    <hr class="ed-divider" />
+
+    <!-- Gallery Section -->
+    <section class="ed-section" id="gallerySection" data-reveal>
+      <h2 class="ed-section__heading">Gallery</h2>
+      <div class="ed-description" id="eventGallery">
+        <p style="color:var(--text-muted);">Images will be soon uploaded in the gallery.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ──── RIGHT: Sticky Booking Sidebar ──── -->
+  <aside class="ed-sidebar">
+    <div class="ed-sidebar__inner" id="sidebarInner">
+
+      <!-- Fee Card -->
+      <div class="ed-sidebar-card ed-sidebar-card--fee" data-reveal>
+        <div class="ed-sidebar-card__fee-row">
+          <span class="ed-sidebar-card__price skeleton" id="sidebarPrice"></span>
+          <span class="ed-sidebar-card__price-label" id="sidebarPriceLabel"></span>
+        </div>
+        <button class="ed-sidebar-card__cta skeleton" id="sidebarRegBtn"></button>
+      </div>
+
+      <!-- Venue Info Card -->
+      <div class="ed-sidebar-card ed-sidebar-card--info" data-reveal>
+        <div class="ed-sidebar-card__icon-row">
+          <div class="ed-sidebar-card__icon skeleton">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="ed-sidebar-card__info-text">
+            <span class="ed-sidebar-card__info-primary skeleton" id="sidebarVenue"></span>
+            <span class="ed-sidebar-card__info-secondary skeleton" id="sidebarVenueSub"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date & Time Info Card -->
+      <div class="ed-sidebar-card ed-sidebar-card--info" data-reveal>
+        <div class="ed-sidebar-card__icon-row">
+          <div class="ed-sidebar-card__icon skeleton">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="ed-sidebar-card__info-text">
+            <span class="ed-sidebar-card__info-primary skeleton" id="sidebarDate"></span>
+            <span class="ed-sidebar-card__info-secondary skeleton" id="sidebarTime"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Deadline Card -->
+      <div class="ed-sidebar-card ed-sidebar-card--info" id="deadlineCard" data-reveal>
+        <div class="ed-sidebar-card__icon-row">
+          <div class="ed-sidebar-card__icon skeleton">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warning)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div class="ed-sidebar-card__info-text">
+            <span class="ed-sidebar-card__info-primary" style="color:var(--accent-warning);">Registration Deadline</span>
+            <span class="ed-sidebar-card__info-secondary skeleton" id="sidebarDeadline"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="iic-footer" role="contentinfo">
+  <div class="iic-footer__inner">
+    <div class="iic-footer__brand">
+      <img src="images/vit-seal.png" alt="VIT Logo" class="iic-footer__logo" />
+      <div class="iic-footer__brand-text">
+        <div class="iic-footer__brand-name">VIT INNOVATIONS</div>
+        <div class="iic-footer__copyright">Copyright @ VIT | Privacy Policy</div>
+      </div>
+    </div>
+    <div class="iic-footer__col">
+      <div class="iic-footer__col-title">Policies:</div>
+      <a href="https://innovations.vit.ac.in/static/docs/VIT-Innovation-Startup-and-Incubation-Policy-2022.pdf" target="_blank" rel="noopener noreferrer">Innovation, Startup and Incubation Policy</a>
+      <a href="https://innovations.vit.ac.in/static/docs/National-Innovation-Startup-Policy-NISP-2019.pdf" target="_blank" rel="noopener noreferrer">National Innovation and Startup Policy</a>
+      <div class="iic-footer__text-item">Faculty Startup Venture Policy</div>
+      <div class="iic-footer__text-item">Student Startup Venture Policy</div>
+    </div>
+    <div class="iic-footer__col">
+      <div class="iic-footer__col-title">Contact:</div>
+      <a href="mailto:director.innovation@vit.ac.in">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        director.innovation@vit.ac.in
+      </a>
+      <a href="mailto:iic@vit.ac.in">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        iic@vit.ac.in
+      </a>
+    </div>
+  </div>
+  <div class="iic-footer__bottom">
+    Site Developed by Innovations Dept, IIC, VIT Vellore
+  </div>
+</footer>
+
+  <!-- ──── REGISTRATION MODAL ──── -->
+  <div class="modal-overlay hidden" id="regModal">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">Register for this Event</h2>
+        <button class="modal__close" id="regModalClose" aria-label="Close Registration">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <form id="regForm">
+          <div id="dynamicFields" style="display:flex;flex-direction:column;gap:var(--space-md);"></div>
+          <div style="margin-top:var(--space-lg);">
+            <button type="submit" class="btn btn-primary" id="regSubmitBtn" style="width:100%; font-size:16px;">
+              Register
+            </button>
+          </div>
+        </form>
+        <div id="regSuccess" class="hidden" style="text-align:center;padding:var(--space-xl);">
+          <div style="width:64px;height:64px;background:rgba(0,184,148,0.1);border-radius:50%;margin:0 auto var(--space-md);display:flex;align-items:center;justify-content:center;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-success)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 style="margin-bottom:8px;">You're registered!</h3>
+          <p style="color:var(--text-muted);">Check your email for confirmation details.</p>
+          <a href="my-registrations.html" class="btn btn-secondary mt-md">View My Registrations</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="module" src="js/event-detail.js"></script>
+</body>
+</html>

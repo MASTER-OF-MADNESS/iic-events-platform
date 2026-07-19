@@ -1,0 +1,56 @@
+# ── Environment Variables ─────────────────────────────────────────────────────
+.env
+.env.*.local
+.env.local
+.env.testing
+
+# ── Node / Vite ───────────────────────────────────────────────────────────────
+node_modules/
+dist/
+.vite/
+*.local
+
+# ── Supabase ──────────────────────────────────────────────────────────────────
+# Local Supabase config with real secrets
+supabase/.branches/
+supabase/.temp/
+
+# ── Legacy PHP / XAMPP (no longer used) ──────────────────────────────────────
+vendor/
+composer.phar
+uploads/*
+!uploads/.gitkeep
+config/db.php
+
+# ── OS generated files ────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+ehthumbs_vista.db
+[Tt]humbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ── Logs and databases ────────────────────────────────────────────────────────
+*.log
+error_log
+php_errors.log
+*.sqlite
+*.sqlite3
+
+# ── IDEs and Editors ──────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.buildpath
+.project
+.settings/
+
+# ── Caches ────────────────────────────────────────────────────────────────────
+.cache/
+.phpunit.result.cache

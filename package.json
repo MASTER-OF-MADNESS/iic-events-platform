@@ -1,0 +1,25 @@
+{
+  "name": "iic-events-platform",
+  "version": "2.0.0",
+  "description": "IIC Events Management Platform — VIT Innovation Cell",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run build:public && npm run build:admin",
+    "build:public": "vite build --config vite.config.public.js",
+    "build:admin": "vite build --config vite.config.admin.js",
+    "preview": "vite preview",
+    "preview:public": "vite preview --config vite.config.public.js --outDir dist-public",
+    "preview:admin": "vite preview --config vite.config.admin.js --outDir dist-admin",
+    "test": "vitest",
+    "lint": "echo 'No linter configured yet'"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "vitest": "^2.0.0"
+  }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IIC Events Dev Gateway</title>
+  <style>
+    :root {
+      --bg: #0f0f1b;
+      --card-bg: #16162a;
+      --text: #e2e8f0;
+      --primary: #6366f1;
+      --accent: #8b5cf6;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    h1 {
+      margin-bottom: 8px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+    }
+    p {
+      color: #94a3b8;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      width: 100%;
+      max-width: 700px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid #2d2d44;
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+    .card p {
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn {
+      background: var(--primary);
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #fff;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-admin {
+      background: var(--accent);
+    }
+    .card:hover .btn {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>IIC Events Platform</h1>
+  <p>Local Development Portal Gateway</p>
+
+  <div class="grid">
+    <a href="/public/index.html" class="card">
+      <div>
+        <h2>Student Portal</h2>
+        <p>Register for events, check attendance, and download certificates.</p>
+      </div>
+      <span class="btn">Launch Public Portal</span>
+    </a>
+
+    <a href="/admin/index.html" class="card">
+      <div>
+        <h2>Admin Dashboard</h2>
+        <p>Manage events, create registration forms, and issue certificates.</p>
+      </div>
+      <span class="btn btn-admin">Launch Admin Portal</span>
+    </a>
+  </div>
+</body>
+</html>

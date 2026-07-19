@@ -1,0 +1,41 @@
+project_id = "your-project-id"
+
+[api]
+port = 54321
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+port = 54323
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = [
+  "http://localhost:3000/public/index.html",
+  "http://localhost:3000/admin/index.html",
+  "https://your-app.vercel.app/public/index.html",
+  "https://your-app.vercel.app/admin/index.html"
+]
+jwt_expiry = 3600
+enable_signup = true
+enable_anonymous_sign_ins = false
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = true
+
+[auth.external.google]
+enabled = true
+client_id = "env(GOOGLE_CLIENT_ID)"
+secret = "env(GOOGLE_CLIENT_SECRET)"
+redirect_uri = ""
+
+[storage]
+enabled = true
+file_size_limit = "5MiB"
+
+[functions]
+verify_jwt = true

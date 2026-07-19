@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function() {
+      const token = sessionStorage.getItem('iic_token');
+      let user = null;
+      try { user = JSON.parse(sessionStorage.getItem('iic_user')); } catch(e) {}
+      const isAdmin = user && (user.role === 'admin' || user.role === 'ADMIN' || user.role === 'SUPER_ADMIN');
+      if (!token || !isAdmin) {
+        window.location.href = '/admin/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+      }
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View and manage all event participants across the IIC platform" />
+  <title>Participants — IIC Events Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+</head>
+<body class="admin-page">
+<div class="admin-layout">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="admin-sidebar" id="adminSidebar">
+                <div class="admin-sidebar__logo" style="padding: 24px; text-align: center;">
+        <h2 style="color: white; font-size: 20px; margin: 0; font-family: 'Poppins', sans-serif;">IIC Admin</h2>
+      </div>
+    <nav class="admin-sidebar__nav">
+      <div class="admin-nav-section">
+        <div class="admin-nav-section-title">Main Menu</div>
+        <a href="index.html" class="admin-nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+        <a href="events.html" class="admin-nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Manage Events
+        </a>
+        <a href="participants.html" class="admin-nav-link active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Upload Attendance
+        </a>
+        <a href="certificates.html" class="admin-nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          Send Certificates
+        </a>
+        <a href="admins.html" class="admin-nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Admins
+        </a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ══ MAIN CONTENT ══ -->
+  <main class="admin-main">
+
+    <!-- Topbar -->
+    <header class="admin-topbar">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <button class="admin-sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar" style="display:none;background:none;border:none;cursor:pointer;color:#64748B;padding:4px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+            <img src="/images/vit-logo-new.png" alt="VIT Logo" style="height: 38px; object-fit: contain;" />
+            <img src="/images/iic-logo-new.png" alt="IIC Logo" style="height: 40px; object-fit: contain;" />
+            <img src="/images/edc-logo.png" alt="EDC Logo" style="height: 40px; object-fit: contain;" />
+            <img src="/images/ipr-logo.jpg" alt="IPR Logo" style="height: 52px; object-fit: contain;" />
+          </div>
+          <div style="font-family: 'Bebas Neue', sans-serif !important; font-size: 22px; letter-spacing: 0.5px; color: var(--text-heading, #1e293b); border-left: 2px solid #e2e8f0; padding-left: 16px; margin-left: 4px; white-space: nowrap; margin-bottom: -4px;">
+            The Office of Innovation, Startup and Technology Transfer
+          </div>
+        </div>
+
+      <div class="admin-topbar__right">
+        <button class="admin-search-btn" id="openGlobalSearchBtn" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+
+        <div class="admin-profile-menu">
+          <button class="admin-avatar-trigger" id="profileMenuBtn">
+            <div class="admin-avatar" id="adminAvatar">S</div>
+          </button>
+
+          <div class="admin-profile-dropdown hidden" id="profileDropdown">
+            <div class="admin-profile-dropdown__header">
+              <div id="adminProfileName" style="font-weight:600;color:var(--text-heading);font-size:14px;">Administrator</div>
+              <div id="dropdownRole" style="font-size:12px;color:var(--text-muted);margin-top:2px;">Super Admin</div>
+              <div id="adminProfileEmail" style="font-size:12px;color:var(--text-muted);margin-top:2px;">admin@iic.edu</div>
+            </div>
+            <div class="admin-profile-dropdown__body">
+              <a href="#" class="logout-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- VIEW 1: Events List -->
+      <div id="eventsView">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+          </div>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Select an event to upload attendance and download the participants data.</p>
+        
+        <div class="admin-section-card">
+          <div class="admin-section-card__body" style="padding:0;">
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;">Event Title</th>
+                    <th style="text-align: center;">Date</th>
+                    <th style="text-align: center;">Venue</th>
+                    <th style="text-align: center;">Type</th>
+                    <th style="text-align: center;">Registrations</th>
+                    <th style="text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="eventsListBody">
+                  <tr>
+                    <td colspan="6" style="text-align:center;padding:48px;color:var(--text-muted);font-size:13px;">
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 12px;display:block;color:#CBD5E1;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      Loading events...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 2: Participants for Event -->
+      <div id="participantsView" style="display: none;">
+        
+        <!-- Header (Breadcrumb & Title + Import Button) -->
+        <div style="margin-bottom: 24px; display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <button id="backToEventsBtn" style="background:none;border:none;padding:0;cursor:pointer;color:var(--text-muted);display:flex;align-items:center;transition:color 0.15s;" onmouseover="this.style.color='var(--text-heading)'" onmouseout="this.style.color='var(--text-muted)'" aria-label="Back to events">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+            <div>
+              <div style="font-size:11px;color:var(--text-muted);font-weight:500;letter-spacing:0.04em;">
+                <span style="color:var(--text-muted);cursor:pointer;" onclick="document.getElementById('backToEventsBtn').click()">Upload Attendance</span>
+                <span style="margin:0 6px;">›</span>
+                <span style="color:var(--text-body);">Event Details</span>
+              </div>
+              <h2 id="currentEventTitle" style="margin-top:2px;margin-bottom:0;font-size:24px; font-weight: 700; color: var(--text-heading); font-family: 'Poppins', sans-serif;">Event Title</h2>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;">
+            <input type="file" id="importCsvInput" accept=".csv" style="display:none;" />
+            <button class="btn btn-primary" id="importParticipantsBtn" style="display:none; border-radius: 50px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Import List
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="admin-stats-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="admin-stat-card">
+            <div class="admin-stat-card__header">
+              <span class="admin-stat-card__title">Total Participants</span>
+              <div class="admin-stat-card__icon" style="background:rgba(27,0,93,0.1);color:#1B005D;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              </div>
+            </div>
+            <div class="admin-stat-card__value" id="statTotalParticipants">0</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="admin-stat-card__header">
+              <span class="admin-stat-card__title">Present</span>
+              <div class="admin-stat-card__icon" style="background:rgba(34,197,94,0.1);color:#22C55E;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </div>
+            <div class="admin-stat-card__value" id="statPresentCount">0</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="admin-stat-card__header">
+              <span class="admin-stat-card__title">Pending / Absent</span>
+              <div class="admin-stat-card__icon" style="background:rgba(245,158,11,0.1);color:#F59E0B;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+            </div>
+            <div class="admin-stat-card__value" id="statPendingCount">0</div>
+          </div>
+        </div>
+
+        <!-- Filters Bar -->
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:24px;margin-bottom:16px;">
+          <div style="position: relative; min-width: 300px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="participantSearchInput" class="form-input" placeholder="Search by name or email..." style="padding-left: 42px; height: 40px; border-radius: 50px;" autocomplete="off" />
+            <div id="searchSuggestions" style="display:none; position:absolute; top:calc(100% + 4px); left:0; right:0; background:white; border:1px solid var(--border-color); border-radius:8px; box-shadow:0 10px 15px -3px rgba(0,0,0,0.1); z-index:100; max-height:200px; overflow-y:auto;"></div>
+          </div>
+          <div style="position:relative;">
+            <button class="btn btn-secondary" style="border-radius: 50px; height: 40px; width: 40px; padding: 0; display: flex; justify-content: center; align-items: center;" onclick="const d = document.getElementById('filterDropdown'); d.style.display = d.style.display === 'none' ? 'block' : 'none'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            </button>
+            <div id="filterDropdown" style="display:none; position:absolute; right:0; top:calc(100% + 8px); background:white; border:1px solid var(--border-color); border-radius:8px; box-shadow:0 10px 15px -3px rgba(0,0,0,0.1); width:180px; z-index:100; overflow:hidden;">
+              <div style="padding:10px 12px; font-weight:600; font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border-color); background:var(--bg-secondary);">Status Filter</div>
+              <select id="participantStatusFilter" style="border:none; width:100%; border-radius:0; padding:4px; box-shadow:none; cursor:pointer; outline:none; -webkit-appearance:none; appearance:none; overflow:hidden; font-size:13px; color:var(--text-body);" onchange="document.getElementById('filterDropdown').style.display='none'" size="3">
+                <option value="" style="padding:8px 12px; margin-bottom:2px; border-radius:4px; font-size:13px;">All Statuses</option>
+                <option value="PRESENT" style="padding:8px 12px; margin-bottom:2px; border-radius:4px; font-size:13px;">Present</option>
+                <option value="ABSENT" style="padding:8px 12px; border-radius:4px; font-size:13px;">Absent</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Participants Table -->
+        <div class="admin-section-card">
+          <div class="admin-section-card__body" style="padding:0;">
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr id="participantsTableHeader">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Date Applied</th>
+                    <th>Attendance</th>
+                  </tr>
+                </thead>
+                <tbody id="participantsTableBody">
+                  <tr>
+                    <td colspan="4" style="text-align:center;padding:48px;color:var(--text-muted);font-size:13px;">
+                      Loading participants...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+      </div> <!-- /participantsView -->
+
+    </div>
+  </main>
+</div>
+
+<script type="module" src="js/admin-auth.js"></script>
+<script type="module" src="js/admin-participants.js"></script>
+</body>
+</html>
