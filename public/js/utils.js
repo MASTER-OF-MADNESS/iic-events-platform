@@ -254,11 +254,12 @@ export function buildEventCard(event) {
   const rawPoster = event.poster || event.poster_url;
   let poster;
   if (!rawPoster) {
-    poster = `https://placehold.co/400x500/1A1A6C/ffffff?text=${encodeURIComponent(event.title || 'IIC Event')}`;
-  } else if (rawPoster.startsWith('http') || rawPoster.startsWith('/')) {
+    poster = `https://ui-avatars.com/api/?name=${encodeURIComponent(event.title || 'IIC Event')}&background=1a1a6c&color=ffffff&size=500`;
+  } else if (rawPoster.startsWith('http') || rawPoster.startsWith('blob:')) {
     poster = rawPoster;
   } else {
-    poster = `/iic_events/${rawPoster}`;
+    // Supabase Storage path not yet resolved — build public URL dynamically
+    poster = `https://ui-avatars.com/api/?name=${encodeURIComponent(event.title || 'IIC Event')}&background=1a1a6c&color=ffffff&size=500`;
   }
   const dateVal = event.date || event.event_date;
   const toDateVal = event.to_date;

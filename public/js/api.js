@@ -51,6 +51,7 @@ function normaliseEvent(e) {
     date:   e.event_date,
     type:   e.event_type,
     from_time: e.from_time,
+    to_time:   e.to_time || null,
     poster: e.poster_url
       ? supabase.storage.from('event-posters').getPublicUrl(e.poster_url).data.publicUrl
       : `https://ui-avatars.com/api/?name=${encodeURIComponent(e.title || 'Event')}&background=1a1a6c&color=ffffff&size=500`,
@@ -170,7 +171,7 @@ async function getEvents(params = {}) {
   let query = supabase
     .from('events')
     .select(`
-      event_id, title, description, event_date, to_date, from_time,
+      event_id, title, description, event_date, to_date, from_time, to_time,
       venue, event_category, event_type, status, poster_url, max_capacity,
       registration_deadline, email_template, email_subject,
       faculty_coordinators, student_coordinators, created_by, created_at,
@@ -217,7 +218,7 @@ async function getEvent(eventId) {
   const { data, error } = await supabase
     .from('events')
     .select(`
-      event_id, title, description, event_date, to_date, from_time,
+      event_id, title, description, event_date, to_date, from_time, to_time,
       venue, event_category, event_type, status, poster_url, max_capacity,
       registration_deadline, email_template, email_subject,
       faculty_coordinators, student_coordinators, created_by, created_at,
@@ -543,7 +544,7 @@ async function getMyRegs() {
     .select(`
       registration_id, registered_at,
       events (
-        event_id, title, event_date, to_date, from_time, venue,
+        event_id, title, event_date, to_date, from_time, to_time, venue,
         event_category, poster_url, fee_type, status
       ),
       attendance ( status ),

@@ -98,7 +98,7 @@ function buildCarousel(events) {
   }
 
   bgContainer.innerHTML = slides.map((ev, i) => {
-    const posterUrl = ev.poster || 'images/placeholder-poster.png';
+    const posterUrl = ev.poster || `https://ui-avatars.com/api/?name=${encodeURIComponent(ev.title || 'IIC Event')}&background=1a1a6c&color=ffffff&size=500`;
     return `<div class="hp-hero__bg-item ${i === 0 ? 'active' : ''}" style="background-image: url('${posterUrl}')"></div>`;
   }).join('');
 
