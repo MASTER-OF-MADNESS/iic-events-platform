@@ -10,8 +10,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="/css/variables.css" />
-  <link rel="stylesheet" href="/css/base.css" />
   <style>
     * {
       box-sizing: border-box;
@@ -255,6 +253,9 @@
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/login-DYRoe99v.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/api-BDslKlxA.js">
+  <link rel="stylesheet" crossorigin href="/assets/api-DdfbKP-A.css">
 </head>
 
 <body>
@@ -306,70 +307,6 @@
     </div>
   </div>
 
-  <script type="module">
-    import api, { API_BASE } from '/js/api.js';
-
-    const TOKEN_KEY = 'iic_token';
-    const USER_KEY = 'iic_user';
-
-    // If already logged in as admin, redirect to dashboard
-    try {
-      const user = JSON.parse(sessionStorage.getItem(USER_KEY));
-      const role = (user?.role || '').toUpperCase();
-      if (sessionStorage.getItem(TOKEN_KEY) && (role === 'ADMIN' || role === 'SUPER_ADMIN')) {
-        window.location.href = `/index.html`;
-      }
-    } catch { }
-
-    const form = document.getElementById('adminLoginForm');
-    const emailEl = document.getElementById('email');
-    const pwEl = document.getElementById('password');
-    const togglePw = document.getElementById('togglePw');
-    const loginBtn = document.getElementById('loginBtn');
-    const formErr = document.getElementById('formError');
-
-    // Toggle password visibility
-    togglePw?.addEventListener('click', () => {
-      pwEl.type = pwEl.type === 'password' ? 'text' : 'password';
-    });
-
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      formErr.classList.remove('visible');
-
-      const email = emailEl.value.trim();
-      const password = pwEl.value;
-
-      if (!email || !password) {
-        formErr.textContent = 'Email and password are required.';
-        formErr.classList.add('visible');
-        return;
-      }
-
-      loginBtn.classList.add('loading');
-
-      try {
-        const res = await api.login({ email, password });
-        const role = (res.user?.role || res.role || '').toUpperCase();
-
-        if (role !== 'ADMIN' && role !== 'SUPER_ADMIN') {
-          formErr.textContent = 'Access denied. Admin credentials required.';
-          formErr.classList.add('visible');
-          loginBtn.classList.remove('loading');
-          return;
-        }
-
-        sessionStorage.setItem(TOKEN_KEY, res.token || 'php_active_session');
-        sessionStorage.setItem(USER_KEY, JSON.stringify(res.user));
-
-        window.location.href = `/index.html`;
-      } catch (err) {
-        formErr.textContent = err.message || 'Invalid email or password.';
-        formErr.classList.add('visible');
-        loginBtn.classList.remove('loading');
-      }
-    });
-  </script>
 </body>
 
 </html>

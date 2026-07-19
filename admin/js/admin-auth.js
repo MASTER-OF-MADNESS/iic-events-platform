@@ -16,7 +16,7 @@ import { getUser, isLoggedIn, isAdmin, clearSession, validateSession } from '/js
 export function requireAdmin() {
   if (!isAdmin()) {
     const currentPath = window.location.pathname + window.location.search;
-    window.location.href = `/admin/login.html?redirect=${encodeURIComponent(currentPath)}`;
+    window.location.href = `/login.html?redirect=${encodeURIComponent(currentPath)}`;
     return false;
   }
   return true;
@@ -38,7 +38,7 @@ async function enforceAdminAccess() {
   const valid = await validateSession();
   if (!valid || !isAdmin()) {
     const currentPath = window.location.pathname + window.location.search;
-    window.location.href = `/admin/login.html?redirect=${encodeURIComponent(currentPath)}`;
+    window.location.href = `/login.html?redirect=${encodeURIComponent(currentPath)}`;
     return;
   }
 
@@ -49,7 +49,7 @@ export async function logout() {
   try { await supabase.auth.signOut(); } catch { /* ignore */ }
   clearSession();
   showToast('Logged out successfully', 'success');
-  setTimeout(() => { window.location.href = '/admin/login.html'; }, 600);
+  setTimeout(() => { window.location.href = '/login.html'; }, 600);
 }
 
 // =============================================================================

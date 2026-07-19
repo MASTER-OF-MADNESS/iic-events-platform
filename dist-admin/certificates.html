@@ -8,7 +8,7 @@
       try { user = JSON.parse(sessionStorage.getItem('iic_user')); } catch(e) {}
       const isAdmin = user && (user.role === 'admin' || user.role === 'ADMIN' || user.role === 'SUPER_ADMIN');
       if (!token || !isAdmin) {
-        window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.href = '/admin/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
       }
     })();
   </script>
@@ -19,11 +19,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/variables.css" />
-  <link rel="stylesheet" href="/css/base.css" />
-  <link rel="stylesheet" href="/css/components.css" />
-  <link rel="stylesheet" href="/css/layout.css" />
-  <link rel="stylesheet" href="css/admin.css" />
   <style>
     /* Certificate Specific Styles */
     .cert-tabs {
@@ -186,6 +181,11 @@
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/certificates-CLf9NKEY.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/api-BDslKlxA.js">
+  <link rel="modulepreload" crossorigin href="/assets/admin-auth-CeQV01eD.js">
+  <link rel="stylesheet" crossorigin href="/assets/api-DdfbKP-A.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-auth-oj7Z0JZu.css">
 </head>
 <body class="admin-page">
 <div class="admin-layout">
@@ -395,7 +395,5 @@
   </main>
 </div>
 
-<script type="module" src="js/admin-auth.js"></script>
-<script type="module" src="js/admin-certificates.js?v=5"></script>
 </body>
 </html>

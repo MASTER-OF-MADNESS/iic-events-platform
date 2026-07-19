@@ -8,7 +8,7 @@
       try { user = JSON.parse(sessionStorage.getItem('iic_user')); } catch(e) {}
       const isAdmin = user && (user.role === 'admin' || user.role === 'ADMIN' || user.role === 'SUPER_ADMIN');
       if (!token || !isAdmin) {
-        window.location.href = '/admin/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
       }
     })();
   </script>
