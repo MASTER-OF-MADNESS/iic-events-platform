@@ -281,6 +281,7 @@ async function createEvent(formData) {
       event_date:           payload.event_date,
       to_date:              payload.to_date || payload.event_date,
       from_time:            payload.from_time,
+      to_time:              payload.to_time || null,
       venue:                payload.venue,
       event_category:       payload.event_category,
       event_type:           payload.event_type,
@@ -344,6 +345,7 @@ async function updateEvent(eventId, formDataOrObject) {
     ...(payload.event_date        && { event_date: payload.event_date }),
     ...(payload.to_date           !== undefined && { to_date: payload.to_date }),
     ...(payload.from_time         && { from_time: payload.from_time }),
+    ...(payload.to_time           !== undefined && { to_time: payload.to_time }),
     ...(payload.venue             && { venue: payload.venue }),
     ...(payload.event_category    && { event_category: payload.event_category }),
     ...(payload.event_type        && { event_type: payload.event_type }),
@@ -914,6 +916,9 @@ const api = {
   getAdmins,
   addAdmin,
   removeAdmin,
+
+  // Custom Fields
+  saveFormFields,
 };
 
 export default api;
