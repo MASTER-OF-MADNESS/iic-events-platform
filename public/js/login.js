@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (session) {
     await validateSession();
     const redirect = getParam('redirect');
-    window.location.href = getSafeRedirect(redirect, '/index.html');
+    window.location.href = getSafeRedirect(redirect, 'index.html');
     return;
   }
 

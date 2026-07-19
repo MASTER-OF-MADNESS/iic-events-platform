@@ -115,5 +115,12 @@
       <span class="btn btn-admin">Launch Admin Portal</span>
     </a>
   </div>
+
+  <script>
+    // Handle Supabase OAuth redirects that land on the Dev Gateway
+    if (window.location.hash.includes('access_token=') || window.location.hash.includes('error=')) {
+      window.location.href = '/public/login.html' + window.location.hash;
+    }
+  </script>
 </body>
 </html>

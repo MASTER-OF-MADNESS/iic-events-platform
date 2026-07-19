@@ -114,14 +114,11 @@ async function signup({ name, email, password }) {
  * (student portal) regardless of which Vercel project triggers the login.
  */
 async function googleLogin() {
-  const redirectUrl = APP_URL.includes('localhost')
-    ? `${APP_URL}/public/index.html`
-    : `${APP_URL}/index.html`;
-
-  const { error } = await supabase.auth.signInWithOAuth({
+  const currentUrl = window.location.href.split('?')[0].split('#')[0];
+  const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: redirectUrl,
+      redirectTo: currentUrl,
       queryParams: { access_type: 'offline', prompt: 'consent' },
     },
   });
