@@ -25,6 +25,17 @@ export default defineConfig({
   build: {
     outDir: '../dist-admin',
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL('./admin/index.html', import.meta.url)),
+        login: fileURLToPath(new URL('./admin/login.html', import.meta.url)),
+        events: fileURLToPath(new URL('./admin/events.html', import.meta.url)),
+        eventDetail: fileURLToPath(new URL('./admin/event-detail.html', import.meta.url)),
+        participants: fileURLToPath(new URL('./admin/participants.html', import.meta.url)),
+        admins: fileURLToPath(new URL('./admin/admins.html', import.meta.url)),
+        certificates: fileURLToPath(new URL('./admin/certificates.html', import.meta.url)),
+      }
+    }
   },
 
   optimizeDeps: {

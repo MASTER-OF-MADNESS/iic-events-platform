@@ -24,6 +24,20 @@ export default defineConfig({
   build: {
     outDir: '../dist-public',
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL('./public/index.html', import.meta.url)),
+        login: fileURLToPath(new URL('./public/login.html', import.meta.url)),
+        events: fileURLToPath(new URL('./public/events.html', import.meta.url)),
+        eventDetail: fileURLToPath(new URL('./public/event-detail.html', import.meta.url)),
+        myRegistrations: fileURLToPath(new URL('./public/my-registrations.html', import.meta.url)),
+        register: fileURLToPath(new URL('./public/register.html', import.meta.url)),
+        verify: fileURLToPath(new URL('./public/verify.html', import.meta.url)),
+        '404': fileURLToPath(new URL('./public/404.html', import.meta.url)),
+        terms: fileURLToPath(new URL('./public/terms.html', import.meta.url)),
+        privacy: fileURLToPath(new URL('./public/privacy.html', import.meta.url)),
+      }
+    }
   },
 
   optimizeDeps: {
